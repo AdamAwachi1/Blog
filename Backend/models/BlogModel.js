@@ -6,6 +6,6 @@ const BlogsSchema = new mongoose.Schema({
   content: { type: String, required: true },
 });
 
-const UserModel = mongoose.model("blogs", BlogsSchema);
+const BlogModel = mongoose.model("blogs", BlogsSchema);
 
-module.exports = UserModel;
+module.exports = BlogModel;

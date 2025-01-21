@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-const UserModel = require("./models/BlogModel");
+const BlogModel = require("./models/BlogModel");
 
 mongoose
   .connect("mongodb://localhost:27017/crud")
   .then(async () => {
     console.log("Connected to MongoDB");
 
-    await UserModel.createIndexes();
+    await BlogModel.createIndexes();
     console.log("Database structure initialized");
 
     mongoose.disconnect();

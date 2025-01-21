@@ -35,7 +35,7 @@ function CreateBlog({ onBlogCreated }) {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h2 className="text-3xl font-bold text-gray-800 mb-4">
+      <h2 className="text-3xl font-bold text-gray-800 mb-8">
         Create a New Blog
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
