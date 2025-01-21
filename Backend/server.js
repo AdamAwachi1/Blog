@@ -1,3 +1,4 @@
+require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -10,8 +11,12 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Use environment variables
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/crud";
+const PORT = process.env.PORT || 3001;
+
 mongoose
-  .connect("mongodb://localhost:27017/crud")
+  .connect(MONGO_URI)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
@@ -60,6 +65,6 @@ app.post("/createBlog", (req, res) => {
     });
 });
 
-app.listen(3001, () => {
-  console.log("Server is Running on http://localhost:3001");
+app.listen(PORT, () => {
+  console.log(`Server is Running on http://localhost:${PORT}`);
 });
