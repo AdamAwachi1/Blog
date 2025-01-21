@@ -12,8 +12,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Use environment variables
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/crud";
-const PORT = process.env.PORT || 3001;
+const MONGO_URI = process.env.MONGO_URI;
+const PORT = process.env.PORT;
 
 mongoose
   .connect(MONGO_URI)
