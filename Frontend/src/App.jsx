@@ -8,10 +8,6 @@ import BlogDetail from "./components/BlogDetails";
 function App() {
   const [user, setUser] = useState(null);
 
-  const handleLogin = (userData) => {
-    setUser(userData);
-  };
-
   return (
     <Router>
       <Navbar user={user} setUser={setUser} />
@@ -21,16 +17,14 @@ function App() {
           element={
             <div>
               {user ? (
-                <>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-10">
-                    <div className="p-4">
-                      <Blogs />
-                    </div>
-                    <div className="p-4">
-                      <CreateBlog />
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-24">
+                  <div className="p-4">
+                    <Blogs />
                   </div>
-                </>
+                  <div className="p-4">
+                    <CreateBlog user={user} />
+                  </div>
+                </div>
               ) : (
                 <div className="p-4 text-center">
                   <h2 className="text-xl font-semibold">

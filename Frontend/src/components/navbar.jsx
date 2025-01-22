@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import SignupPopup from "./signup";
 import LoginPopup from "./login";
 
@@ -23,7 +24,9 @@ const Navbar = ({ user, setUser }) => {
       <nav className="bg-gray-800 p-3">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex">
-            <h1 className="text-xl font-bold text-white">Blog Site</h1>
+            <Link to="/">
+              <h1 className="text-xl font-bold text-white">Blog Site</h1>
+            </Link>
           </div>
           <div className="space-x-4">
             {user ? (

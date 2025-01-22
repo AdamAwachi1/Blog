@@ -1,29 +1,35 @@
 import React, { useState } from "react";
 
-function CreateBlog({ onBlogCreated }) {
-  const [form, setForm] = useState({ title: "", author: "", content: "" });
+function CreateBlog({ onBlogCreated, user }) {
+  const [form, setForm] = useState({ title: "", content: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setForm((prevForm) => ({ ...prevForm, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const blogData = {
+      title: form.title,
+      author: user?.name,
+      content: form.content,
+    };
+
     fetch("http://localhost:3001/createBlog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(form),
+      body: JSON.stringify(blogData),
     })
       .then((res) => {
         if (res.ok) {
           alert("Blog created successfully!");
-          setForm({ title: "", author: "", content: "" });
+          setForm({ title: "", content: "" });
           onBlogCreated();
         } else {
           alert("Error creating blog");
@@ -53,20 +59,7 @@ function CreateBlog({ onBlogCreated }) {
           />
         </div>
         <div>
-          <label className="lock text-lg font-medium text-gray-700">
-            Author
-          </label>
-          <input
-            type="text"
-            name="author"
-            value={form.author}
-            onChange={handleChange}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            required
-          />
-        </div>
-        <div>
-          <label className="lock text-lg font-medium text-gray-700">
+          <label className="block text-lg font-medium text-gray-700">
             Content
           </label>
           <textarea
