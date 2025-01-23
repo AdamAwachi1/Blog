@@ -31,7 +31,6 @@ cd Blog
 ```bash
 cd backend
 npm install
-node initializeDB.js
 node server.js
 ```
 
